@@ -13,7 +13,7 @@ export const LayoutDashboard = (props: IProps) => {
                 className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0"
             >
                 <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3"
-                    href="#">
+                    href="/dashboard">
                     Casa Da Paz
                 </a>
                 <button
@@ -58,6 +58,14 @@ export const LayoutDashboard = (props: IProps) => {
                                         to={'/usuarios'}
                                     >
                                         Usuários
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link`}
+                                        to={'/historicos'}
+                                    >
+                                        Históricos
                                     </Link>
                                 </li>
                             </ul>
