@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
-import { useEffect } from "react";
-import { LayoutDashboard } from "../../components/LayoutDashboard";
+import { useEffect } from "react"
+import { NavBar } from "../../components/NavBar"
 import { IToken } from "../../interfaces/token";
 import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
@@ -25,9 +25,9 @@ export default function Historicos() {
 
   return (
     <>
-      <LayoutDashboard>
+      <NavBar>
         <h1 className={styles.title}>Pesoas que fizeram parte da nossa história</h1>
-      </LayoutDashboard>
+      </NavBar>
     </>
   );
 }

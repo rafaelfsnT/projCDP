@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard'
 import Produto from './pages/Produto'
 import Usuarios from './pages/Usuarios'
 import GerenciarUsuarios from './pages/Usuarios/Gerenciar'
-import Historico from './pages/Historicos'
+import Historicos from './pages/Historicos'
 
 export const Rotas = () => {
     return (
@@ -34,15 +34,11 @@ export const Rotas = () => {
                     path='/usuarios/:id'
                     element={<GerenciarUsuarios />}
                 />
-
-                <Route
-                    path='/produto/:id'
-                    element={<Produto />}
+                <Route 
+                path= '/historicos'
+                element={<Historicos />}
                 />
-<Route 
-path='/historicos'
-element= {<Historico />}
-/>
+
              
             </Routes>
         </BrowserRouter>

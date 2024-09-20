@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from "react"
 import { IToken } from "../../../interfaces/token"
 import { verificaTokenExpirado } from "../../../services/token"
 import { useNavigate } from "react-router-dom"
-import { LayoutDashboard } from "../../../components/LayoutDashboard"
+import { NavBar } from "../../../components/NavBar"
 import { SubmitHandler, useForm } from "react-hook-form"
 import axios from "axios"
 
@@ -57,7 +57,7 @@ export default function GerenciarUsuarios() {
 
     return (
         <>
-            <LayoutDashboard>
+            <NavBar>
                 <h1>Usuario</h1>
 
                 <form
@@ -192,7 +192,7 @@ export default function GerenciarUsuarios() {
                         </button>
                     </div>
                 </form>
-            </LayoutDashboard>
+            </NavBar>
         </>
     )
 }
