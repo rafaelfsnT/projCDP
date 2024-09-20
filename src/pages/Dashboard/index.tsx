@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LayoutDashboard } from "../../components/LayoutDashboard";
+import { NavBar } from "../../components/NavBar"
 import { IToken } from "../../interfaces/token";
 import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
@@ -29,9 +29,9 @@ export default function Dashboard() {
 
     return (
         <>
-            <LayoutDashboard>
-                <h1>Novu</h1>
-            </LayoutDashboard>
+            <NavBar>
+        <h1>Casa da Paz </h1>
+            </NavBar>
         </>
     )
 }

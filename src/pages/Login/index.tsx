@@ -79,10 +79,10 @@ export default function Login() {
             <div className={styles.main}>
                 <div className={styles.border}>
                     <div className='d-flex flex-column align-items-center'>
-                        <h1 className='text-primary'>Login</h1>
-                        <p className='text-secundary'>
+                        <h1 className='text-success'>Login</h1>
+                        <h5 className='text-secundary'>
                             Preencha os campos para logar
-                        </p>
+                        </h5>
 
                     </div>
                     <hr />
@@ -139,7 +139,7 @@ export default function Login() {
                         </div>
                         <div className='col-md-12 mt-3'>
                             <button
-                                className='btn btn-primary w-100'
+                                className='btn btn-success w-100'
                                 type='submit'
                                 id='botao'
                             >

@@ -6,6 +6,13 @@
       "email": "admin@gmail.com",
       "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
       "permissoes": "admin"
+    },
+    {
+      "email": "adm123@gmail.com",
+      "password": "$2a$10$yJLKBH87Nm1G5EcXDnc7RuGKNGyKZpxwAFSc4U.7l7rzmAq4xu/nC",
+      "nome": "Adminstrador",
+      "permissoes": "admin",
+      "id": 2
     }
   ]
 }
