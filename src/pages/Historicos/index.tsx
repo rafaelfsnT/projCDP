@@ -5,7 +5,6 @@ import { IToken } from "../../interfaces/token";
 import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 
-
 export default function Historicos() {
   const navigate = useNavigate();
 
@@ -26,7 +25,7 @@ export default function Historicos() {
   return (
     <>
       <NavBar>
-        <h1 className={styles.title}>Pesoas que fizeram parte da nossa história</h1>
+        <h1 className={styles.title}>Pessoas que fizeram parte da nossa história</h1>
       </NavBar>
     </>
   );
