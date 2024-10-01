@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 interface IProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const NavBar = (props: IProps) => {
   return (
     <>
       <header
-        className={`navbar navbar-dark sticky-top bg-success flex-md-nowrap p-0 ${styles.navbar}`}
+        className={`navbar navbar-dark sticky-top p-0 flex-md-nowrap ${styles.navbar}`}
       >
         <div className="d-flex align-items-center justify-content-between w-100">
           <a
@@ -23,15 +23,15 @@ export const NavBar = (props: IProps) => {
             </div>
           </a>
 
-          <div className="navbar-nav d-flex me-auto">
+          <div className="d-flex me-auto">
             <Link className="nav-link me-3" to={"/dashboard"}>
-              Dashboard
+              DASHBOARD
             </Link>
             <Link className="nav-link me-3" to={"/usuarios"}>
-              Usuários
+              USUÁRIOS
             </Link>
             <Link className="nav-link me-3" to={"/historicos"}>
-              Históricos
+              HISTÓRICOS
             </Link>
           </div>
           <div className="input-group me-3">
@@ -40,7 +40,7 @@ export const NavBar = (props: IProps) => {
               className="form-control"
               placeholder="Pesquisar..."
             />
-            <button className="btn btn-outline-light" type="button">
+            <button className="btn btn-outline-dark" type="button">
               <FaSearch />
             </button>
           </div>
@@ -48,7 +48,7 @@ export const NavBar = (props: IProps) => {
           <div className="navbar-nav">
             <div className="nav-item text-nowrap">
               <Link
-                className="nav-link"
+                className="nav-link text-success"
                 to={"/"}
                 onClick={() => localStorage.removeItem("americanos.token")}
               >

@@ -1,4 +1,20 @@
 .title {
     text-align: center;
+    font-size: 3rem;
     padding: 3rem;
+    
+}
+.biografia{
+    max-width: 100%;
+}
+.biografia1{
+    max-width: 100%;
+    text-align: right;
+}
+.text{
+    font-size: 25px;
+    text-align: justify;
+}
+.espacamento{
+    padding-bottom: 10rem;
 }
