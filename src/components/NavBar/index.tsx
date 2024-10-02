@@ -23,26 +23,36 @@ export const NavBar = (props: IProps) => {
             </div>
           </a>
 
-          <div className="d-flex me-auto">
-            <Link className="nav-link me-3" to={"/dashboard"}>
-              DASHBOARD
-            </Link>
-            <Link className="nav-link me-3" to={"/usuarios"}>
-              USUÁRIOS
-            </Link>
-            <Link className="nav-link me-3" to={"/historicos"}>
-              HISTÓRICOS
-            </Link>
-          </div>
-          <div className="input-group me-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Pesquisar..."
-            />
-            <button className="btn btn-outline-dark" type="button">
-              <FaSearch />
-            </button>
+          <div className="d-flex justify-content-end align-items-center">
+            <div className="d-flex me-3">
+              <Link className="nav-link me-3" to={"/dashboard"}>
+                Início
+              </Link>
+              <Link className="nav-link me-3" to={"/usuarios"}>
+                Sobre Nós
+              </Link>
+              <Link className="nav-link me-3" to={"/historicos"}>
+                Históricos
+              </Link>
+              <Link className="nav-link me-3" to={"/voluntarios"}>
+                Voluntários
+              </Link>
+              <Link className="nav-link me-3" to={"/galeria"}>
+                Galeria
+              </Link>
+            </div>
+
+            <div className="input-group rounded" style={{ width: "200px" }}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Pesquisar..."
+                style={{ width: "150px" }}
+              />
+              <button className="btn btn-outline-success" type="button">
+                <FaSearch />
+              </button>
+            </div>
           </div>
 
           <div className="navbar-nav">
