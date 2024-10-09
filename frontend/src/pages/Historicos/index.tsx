@@ -7,20 +7,8 @@ import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 
 export default function Historicos() {
-  
-
-    const [dados, setDados] = useState([]);
-    useEffect(() => {
-      axios.get('http://127.0.0.1:8000/api/dados')
-      .then((response) => {
-        setDados(response.data);
-      })
-      .catch((error) => {
-        console.error('Erro ao buscar dados:', error);
-      });
-    }, []);
-    
-    const navigate = useNavigate();
+   
+   const navigate = useNavigate();
   useEffect(() => {
     let lsToken = localStorage.getItem("americanos.token");
 
