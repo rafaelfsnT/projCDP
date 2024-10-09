@@ -40,6 +40,10 @@ export const NavBar = (props: IProps) => {
               <Link className="nav-link me-3" to={"/galeria"}>
                 Galeria
               </Link>
+
+              <Link className="nav-link me-3" to={"/doacao"}>
+               Doe Agora
+              </Link>
             </div>
 
             <div className="input-group rounded" style={{ width: "200px" }}>
