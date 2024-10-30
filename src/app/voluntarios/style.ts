@@ -34,6 +34,7 @@ export const TextContainer = styled.div`
 export const Title = styled.h1`
     font-size: 2rem;
     margin-bottom: 10px;
+    color: #8fbd31;
 `;
 export const Title2 = styled.h3`
     font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme desejado */

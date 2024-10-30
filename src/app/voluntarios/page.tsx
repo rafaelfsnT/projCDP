@@ -8,7 +8,6 @@ import {
   Title,
   Description,
   Button,
-  Title2,
 } from "./style";
 
 export default function Voluntarios() {
@@ -28,15 +27,6 @@ export default function Voluntarios() {
     espaço acolhedor e seguro, onde crianças possam brincar, aprender e
     crescer com dignidade.
     <br />
-    <Title2>Por que ser um voluntário?  </Title2>
-
-    Ao se tornar um voluntário na Casa da Paz, você terá a chance de
-    fazer a diferença na vida de crianças e adolescentes que precisam de
-    apoio e orientação. Você pode contribuir com suas habilidades, seja
-    ajudando em atividades recreativas, oferecendo tutoria, organizando
-    eventos ou simplesmente sendo um amigo e mentor.
-    <br />
-  <Title2>O que você ganha?</Title2>
   Além de ajudar a construir um futuro melhor para nossas
     crianças, você terá a oportunidade de desenvolver novas habilidades,
     fazer novas amizades e vivenciar momentos transformadores que
