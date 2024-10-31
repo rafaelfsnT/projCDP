@@ -5,6 +5,7 @@ export const Title = styled.h1`
     text-align: center;
     font-size: 3rem;
     padding: 3rem;
+    color: #8fbd31;
 `;
 
 export const Biografia = styled.div`

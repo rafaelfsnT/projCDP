@@ -5,10 +5,6 @@ export const Title = styled.h1`
     text-align: center; // Centraliza o texto
     font-size: 3rem; // Tamanho da fonte do título
     color: #8fbd31; // Cor do título
-<<<<<<< HEAD
-=======
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); // Sombra para destaque
->>>>>>> main
     font-family: 'Arial', sans-serif; // Tipo de fonte
     letter-spacing: 2px; // Espaçamento entre letras
 `;
