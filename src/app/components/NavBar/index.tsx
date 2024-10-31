@@ -23,10 +23,12 @@ export const NavBar = (props: IProps) => {
             <div className="d-flex me-3">
               <Link href="/" className="nav-link me-3">Início</Link>
               <Link href="/sobre" className="nav-link me-3">Sobre Nós</Link>
-              <Link href="/historicos" className="nav-link me-3">Históricos</Link>
               <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
+              <Link href="/historicos" className="nav-link me-3">Históricos</Link>
               <Link href="/galeria" className="nav-link me-3">Galeria</Link>
+              <Link href="/contato" className="nav-link me-3">Contato</Link> 
               <Link href="/doacao" className="nav-link me-3">Doe Agora</Link>
+
             </div>
 
             <SearchInput className="input-group" style={{ width: "300px" }}>
