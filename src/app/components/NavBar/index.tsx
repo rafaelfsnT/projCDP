@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { FaSignOutAlt, FaSearch } from "react-icons/fa";
-import { CustomNavbar, Logo, SearchInput } from "./style";
+import { CustomNavbar, Logo, SearchInput, HighlightButton } from "./style"; // Importar o novo estilo
 
 interface IProps {
   children?: ReactNode;
@@ -23,12 +23,13 @@ export const NavBar = (props: IProps) => {
             <div className="d-flex me-3">
               <Link href="/" className="nav-link me-3">Início</Link>
               <Link href="/sobre" className="nav-link me-3">Sobre Nós</Link>
-              <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
               <Link href="/historicos" className="nav-link me-3">Históricos</Link>
+              <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
               <Link href="/galeria" className="nav-link me-3">Galeria</Link>
-              <Link href="/contato" className="nav-link me-3">Contato</Link> 
-              <Link href="/doacao" className="nav-link me-3">Doe Agora</Link>
-
+              {/* Botão Doe Agora */}
+              <HighlightButton as="a" href="/doacao" className="nav-link me-3">
+                Doe Agora
+              </HighlightButton>
             </div>
 
             <SearchInput className="input-group" style={{ width: "300px" }}>
