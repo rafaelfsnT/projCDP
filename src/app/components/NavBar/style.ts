@@ -1,10 +1,34 @@
 import styled from 'styled-components';
 
 export const CustomNavbar = styled.header`
-  height: 100px;
+  height: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.253);
   background-color: #F8F8F8;
   color: #8fbd31;
+  .nav-link {
+    transition: color 0.3s, transform 0.3s, text-decoration 0.3s;
+    position: relative; 
+    font-size: 1.1rem;
+}
+
+.nav-link:hover {
+  transform: scale(1.1); 
+}
+.nav-link:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #8fbd31;
+  position: absolute;
+  left: 0;
+  transform: scaleX(0); 
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover:after {
+  transform: scaleX(1); 
+}
 `;
 
 export const Logo = styled.div`
@@ -17,14 +41,6 @@ export const Logo = styled.div`
 export const SearchInput = styled.div`
   display: flex;
   align-items: center;
-
-  input {
-    border-radius: 20px 0 0 20px;
-    border: 1px solid #ced4da;
-    padding: 10px 15px;
-    transition: border-color 0.3s ease;
-    height: 38px; 
-  }
 
   button {
     border-radius: 0 20px 20px 0;
@@ -44,22 +60,21 @@ export const SearchInput = styled.div`
 `;
 
 export const HighlightButton = styled.button`
-  background-color: #8fbd31; /* Cor de fundo */
-  color: white; /* Cor do texto */
-  border: none; /* Sem borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 0.5rem 1rem; /* Espaçamento */
-  font-weight: bold; /* Negrito */
-  cursor: pointer; /* Muda o cursor para mãozinha */
-  text-decoration: none; /* Remove sublinhado */
-  transition: background-color 0.3s, transform 0.3s; /* Animação ao passar o mouse */
+  background-color: #8fbd31; 
+  color: white;
+  border: none; 
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: bold
+  cursor: pointer; 
+  text-decoration: none; 
+  transition: background-color 0.3s, transform 0.3s; 
   
-  /* Ajuste para elevar o botão */
-  margin-top: -4px; /* Margem negativa para levantar o botão */
+  margin-top: -7.5px; 
   
   &:hover {
-    background-color: #7aa72a; /* Cor ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento de tamanho ao passar o mouse */
+    background-color: #7aa72a;
+    transform: scale(1.05); 
   }
 `;
 

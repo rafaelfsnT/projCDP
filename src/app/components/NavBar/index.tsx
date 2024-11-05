@@ -27,7 +27,7 @@ export const NavBar = (props: IProps) => {
               <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
               <Link href="/galeria" className="nav-link me-3">Galeria</Link>
               {/* Botão Doe Agora */}
-              <HighlightButton as="a" href="/doacao" className="nav-link me-3">
+              <HighlightButton as="a" href="/doacao" className="me-3">
                 Doe Agora
               </HighlightButton>
             </div>

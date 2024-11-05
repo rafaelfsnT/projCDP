@@ -21,7 +21,7 @@ export default function Voluntarios() {
       <NavBar />
       <Container>
         <ImageContainer>
-          <Image src="/image.png" alt="Voluntários" />
+          <Image src="/voluntario.jpg" alt="Voluntários" />
         </ImageContainer>
         <TextContainer>
           <Title>Seja um(a) Voluntário(a) !</Title>
@@ -33,12 +33,10 @@ export default function Voluntarios() {
             para nossas crianças, você terá a oportunidade de desenvolver novas
             habilidades, fazer novas amizades e vivenciar momentos
             transformadores que ficarão para sempre em sua memória.
-            <br />O trabalho em equipe e a solidariedade são fundamentais para o
-            nosso ambiente, e juntos podemos criar um impacto real. Junte-se a
-            nós! Se você tem paixão por ajudar os outros e deseja se envolver em
-            um projeto significativo, venha ser um voluntário na Casa da Paz.
-            Sua contribuição é essencial para transformar vidas e construir uma
-            comunidade mais forte e unida.
+            <br /> Junte-se a nós! Se você tem paixão por ajudar os outros e
+            deseja se envolver em um projeto significativo, venha ser um
+            voluntário na Casa da Paz. Sua contribuição é essencial para
+            transformar vidas e construir uma comunidade mais forte e unida.
           </Description>
           <Link href="/voluntarios/form" passHref>
             <Button>Quero ser um Voluntário</Button>
@@ -60,7 +58,7 @@ export default function Voluntarios() {
         comunidade!
       </Description2>
       <ImageContainer2>
-        <Image2 src="/voluntario.jpg"></Image2>
+        <Image2 src="/image2.jpg"></Image2>
       </ImageContainer2>
     </>
   );
