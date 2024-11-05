@@ -1,10 +1,9 @@
-import { Card } from "./components/Card";
-import { Menu } from "./components/Menu";
+import { NavBar } from './components/NavBar';
 
 export default function Home() {
   return (
     <>
-      <Menu />
+     <NavBar />
 
       <div style={{
         paddingLeft: "6%",
@@ -18,13 +17,7 @@ export default function Home() {
             justifyContent: "center",
             flexWrap: 'wrap'
           }}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-
+       
         </div>
       </div>
     </>

@@ -71,7 +71,7 @@ export default function Doacao() {
                                             setTipoDoacao('pix');
                                             setMostrarQRCode(true);
                                         }}
-                                        small
+                                      
                                     >
                                         Pix
                                     </ValueButton>
@@ -81,7 +81,7 @@ export default function Doacao() {
                                             setTipoDoacao('cartao');
                                             setMostrarQRCode(false);
                                         }}
-                                        small
+                                       
                                     >
                                         Cartão
                                     </ValueButton>

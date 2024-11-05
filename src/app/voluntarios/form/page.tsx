@@ -1,6 +1,8 @@
 "use client";
 import { NavBar } from "@/app/components/NavBar";
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import {
   FormContainer,
@@ -8,15 +10,17 @@ import {
   Label,
   Input,
   Select,
-  Textarea,
   SubmitButton,
   ButtonContainer,
+  BackgroundContainer
 } from "./style";
 
 export default function Form() {
+  const router = useRouter();
   return (
     <>
       <NavBar />
+    <BackgroundContainer>
       <FormContainer>
         <form>
           <FormField>
@@ -45,19 +49,33 @@ export default function Form() {
           </FormField>
 
           <FormField>
-            <Label htmlFor="voluntariado">
+          <Label htmlFor="voluntariado">
               Como você gostaria de ser voluntário?
             </Label>
-            <Textarea id="voluntariado" name="voluntariado" required />
+            <Select id="voluntariado" name="voluntariado" required>
+              <option value="">Selecione uma opção</option>
+              <option value="tutoria">Tutoria</option>
+              <option value="eventos">Organização de Eventos</option>
+              <option value="assistencia">Assistência a Crianças</option>
+              <option value="coleta">Coleta de Alimentos</option>
+              <option value="outro">Outro</option>
+            </Select>
           </FormField>
 
           <ButtonContainer>
-          <Link href="/" passHref>
-            <SubmitButton type="submit">Enviar</SubmitButton>
-          </Link>
+            <SubmitButton
+              type="button"
+              onClick={() => {
+                router.push("/");
+              }}
+            >
+              Enviar
+            </SubmitButton>
           </ButtonContainer>
         </form>
       </FormContainer>
+    </BackgroundContainer>
+
     </>
   );
 }
