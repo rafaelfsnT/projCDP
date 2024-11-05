@@ -2,18 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function saveFormData(Request $request)
     {
-        //
+        // Validação dos dados recebidos
+        $request->validate([
+            'nome' => 'required|string|max:100',
+            'endereco' => 'required|string|max:100',
+            'cidade' => 'required|string|max:100',
+            'email' => 'required|email|max:100',
+            'telefone' => 'required|integer',
+            'opcao' => 'nullable|string|max:100',
+        ]);
+
+        // Criar e salvar o registro no banco de dados
+        $form = new Form();
+        $form->nome = $request->nome;
+        $form->endereco = $request->endereco;
+        $form->cidade = $request->cidade;
+        $form->email = $request->email;
+        $form->telefone = $request->telefone;
+        $form->opcao = $request->opcao; 
+
+        $form->save();
+
+        return response()->json(['message' => 'Dados salvos com sucesso!']);
     }
 
+    public function index(){
+        
+    }
     /**
      * Show the form for creating a new resource.
      */

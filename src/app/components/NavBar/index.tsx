@@ -19,13 +19,14 @@ export const NavBar = (props: IProps) => {
             </Logo>
           </Link>
 
-          <div className="d-flex justify-content-end align-items-center">
-            <div className="d-flex me-3">
+          <div className="d-flex justify-content-center align-items-center w-100">
+          <div className="d-flex justify-content-center align-items-center">
               <Link href="/" className="nav-link me-3">Início</Link>
               <Link href="/sobre" className="nav-link me-3">Sobre Nós</Link>
               <Link href="/historicos" className="nav-link me-3">Históricos</Link>
               <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
               <Link href="/galeria" className="nav-link me-3">Galeria</Link>
+              <Link href="/contato" className="nav-link me-3">Contato</Link>
               {/* Botão Doe Agora */}
               <HighlightButton as="a" href="/doacao" className="me-3">
                 Doe Agora
@@ -44,18 +45,7 @@ export const NavBar = (props: IProps) => {
             </SearchInput>
           </div>
 
-          <div className="navbar-nav">
-            <div className="nav-item text-nowrap">
-              <Link
-                href="/"
-                className="nav-link"
-                style={{ color: "#8fbd31" }}
-                onClick={() => localStorage.removeItem("americanos.token")}
-              >
-                <FaSignOutAlt /> Sair
-              </Link>
-            </div>
-          </div>
+       
         </div>
       </CustomNavbar>
 
