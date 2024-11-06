@@ -33,10 +33,7 @@ export default function Voluntarios() {
             para nossas crianças, você terá a oportunidade de desenvolver novas
             habilidades, fazer novas amizades e vivenciar momentos
             transformadores que ficarão para sempre em sua memória.
-            <br /> Junte-se a nós! Se você tem paixão por ajudar os outros e
-            deseja se envolver em um projeto significativo, venha ser um
-            voluntário na Casa da Paz. Sua contribuição é essencial para
-            transformar vidas e construir uma comunidade mais forte e unida.
+          
           </Description>
           <Link href="/voluntarios/form" passHref>
             <Button>Quero ser um Voluntário</Button>
