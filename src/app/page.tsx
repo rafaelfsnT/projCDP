@@ -1,7 +1,10 @@
+'use client';
 import { NavBar } from "./components/NavBar";
 import Link from "next/link";
 import Image from "next/image";
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Container,
   ImageContainer,
@@ -11,6 +14,15 @@ import {
 } from "./style";
 
 export default function Home() {
+  const router = useRouter();
+
+    useEffect(() => {
+        // Verificar se o token está no localStorage
+        const token = localStorage.getItem('user_token');
+        if (!token) {
+            router.push('/login'); // Redireciona para login se não houver token
+        }
+    }, [router])
   return (
     <>
       <NavBar />

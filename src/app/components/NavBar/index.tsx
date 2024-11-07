@@ -1,14 +1,31 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
-import { FaSignOutAlt, FaSearch } from "react-icons/fa";
-import { CustomNavbar, Logo, SearchInput, HighlightButton } from "./style"; // Importar o novo estilo
+import { FaUser, FaSearch } from "react-icons/fa";
+import {
+  CustomNavbar,
+  Logo,
+  SearchInput,
+  HighlightButton,
+  Login,
+} from "./style"; // Importar o novo estilo
 
 interface IProps {
   children?: ReactNode;
 }
 
 export const NavBar = (props: IProps) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Defina o estado para "true" após o primeiro render no cliente
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    // Retorne null ou um conteúdo estático enquanto a página é renderizada no servidor
+    return null;
+  }
   return (
     <>
       <CustomNavbar className="navbar navbar-light sticky-top p-0 flex-md-nowrap">
@@ -20,13 +37,25 @@ export const NavBar = (props: IProps) => {
           </Link>
 
           <div className="d-flex justify-content-center align-items-center w-100">
-          <div className="d-flex justify-content-center align-items-center">
-              <Link href="/" className="nav-link me-3">Início</Link>
-              <Link href="/sobre" className="nav-link me-3">Sobre Nós</Link>
-              <Link href="/historicos" className="nav-link me-3">Históricos</Link>
-              <Link href="/voluntarios" className="nav-link me-3">Voluntários</Link>
-              <Link href="/galeria" className="nav-link me-3">Galeria</Link>
-              <Link href="/contato" className="nav-link me-3">Contato</Link>
+            <div className="d-flex justify-content-center align-items-center">
+              <Link href="/" className="nav-link me-3">
+                Início
+              </Link>
+              <Link href="/sobre" className="nav-link me-3">
+                Sobre Nós
+              </Link>
+              <Link href="/historicos" className="nav-link me-3">
+                Históricos
+              </Link>
+              <Link href="/voluntarios" className="nav-link me-3">
+                Voluntários
+              </Link>
+              <Link href="/galeria" className="nav-link me-3">
+                Galeria
+              </Link>
+              <Link href="/contato" className="nav-link me-3">
+                Contato
+              </Link>
               {/* Botão Doe Agora */}
               <HighlightButton as="a" href="/doacao" className="me-3">
                 Doe Agora
@@ -45,7 +74,11 @@ export const NavBar = (props: IProps) => {
             </SearchInput>
           </div>
 
-       
+          <Login>
+            <Link href="/login" className="nav-link me-3">
+              <FaUser />
+            </Link>
+          </Login>
         </div>
       </CustomNavbar>
 
