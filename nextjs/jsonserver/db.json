@@ -1,0 +1,22 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Pen Drive"
+    },
+    {
+        "id": 2,
+        "nome": "Mouse"
+    }
+  ],
+  "produtos": [
+    {
+        "id":1,
+        "id_categorias": 1,
+        "nome": "Novo Pendrive",
+        "valor": 89.90,
+        "promo": 79.90,
+        "imagem": "pendrives/pendrive1g.jpg"
+    }
+  ]
+}
