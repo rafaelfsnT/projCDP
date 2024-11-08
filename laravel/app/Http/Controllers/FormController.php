@@ -2,39 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Form;
 use Illuminate\Http\Request;
+use App\Models\Form;
 
 class FormController extends Controller
 {
     public function saveFormData(Request $request)
     {
         // Validação dos dados recebidos
-        $request->validate([
-            'nome' => 'required|string|max:100',
-            'endereco' => 'required|string|max:100',
-            'cidade' => 'required|string|max:100',
-            'email' => 'required|email|max:100',
-            'telefone' => 'required|integer',
-            'opcao' => 'nullable|string|max:100',
+        $validated = $request->validate([
+            'nome' => 'required|string',
+            'endereco' => 'required|string',
+            'cidade' => 'required|string',
+            'email' => 'required|email',
+            'telefone' => 'required|string',
+            'voluntariado' => 'required|string',
         ]);
 
-        // Criar e salvar o registro no banco de dados
-        $form = new Form();
-        $form->nome = $request->nome;
-        $form->endereco = $request->endereco;
-        $form->cidade = $request->cidade;
-        $form->email = $request->email;
-        $form->telefone = $request->telefone;
-        $form->opcao = $request->opcao; 
-
-        $form->save();
-
-        return response()->json(['message' => 'Dados salvos com sucesso!']);
+        // Criação de um novo registro na tabela 'forms'
+        try {
+            $form = Form::create($validated);
+            return response()->json(['message' => 'Dados salvos com sucesso!', 'data' => $form], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao salvar os dados.', 'error' => $e->getMessage()], 500);
+        }
     }
-
+    
     public function index(){
-        
+
     }
     /**
      * Show the form for creating a new resource.
