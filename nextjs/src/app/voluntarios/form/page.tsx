@@ -1,7 +1,7 @@
 "use client";
 import { NavBar } from "@/app/components/NavBar";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FormContainer,
   FormField,
@@ -23,6 +23,12 @@ export default function Form() {
   const [voluntariado, setVoluntariado] = useState("");
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    if (message === "Dados salvos com sucesso!") {
+      router.push("/"); // Redireciona para a home ou outra página após sucesso
+    }
+  }, [message, router]);
+
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
 
@@ -36,7 +42,7 @@ export default function Form() {
     };
 
     try {
-      const response = await fetch("/api/saveFormData", {
+      const response = await fetch("http://localhost:8000/api/saveFormData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,10 +51,10 @@ export default function Form() {
       });
 
       const data = await response.json();
+      console.log(data);  // Adicionando console.log para verificar o que a API retorna
 
       if (response.ok) {
         setMessage("Dados salvos com sucesso!");
-        router.push("/"); // Redireciona para a home ou outra página após o sucesso
       } else {
         setMessage("Erro ao salvar os dados.");
       }
@@ -56,7 +62,6 @@ export default function Form() {
       setMessage("Erro ao enviar os dados.");
     }
   };
-
   return (
     <>
       <NavBar />
