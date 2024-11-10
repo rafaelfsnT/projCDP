@@ -1,5 +1,11 @@
 "use client";
-import { SyntheticEvent, useCallback, useRef, useState } from "react";
+import {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Loading } from "../components/Loading";
 import { Toast } from "../components/Toast";
 import axios from "axios";
@@ -13,40 +19,41 @@ export default function Login() {
   const [isToast, setIsToast] = useState(false);
 
   const submitForm = useCallback(
-    (event: SyntheticEvent) => {
+    (event: React.SyntheticEvent) => {
       event.preventDefault();
-
+  
       if (refForm.current.checkValidity()) {
         setIsLoading(true);
         const target = event.target as typeof event.target & {
           email: { value: string };
           senha: { value: string };
         };
+  
+        axios.post('http://localhost:8000/api/login',
+          {
+              email: target.email.value,
+              password: target.senha.value,
+          }
+      ).then((resposta) => { //salva os dados da requisição na localStorage
+          console.log(resposta.data)
 
-        const email = target.email.value;
-        const senha = target.senha.value;
+          localStorage.setItem(
+              'americanos.token',
+              JSON.stringify(resposta.data)
+          )
 
-        // Enviar os dados para a API
-        axios.post('http://localhost:8000/api/login', { email, password: senha })
-        .then((resposta) => {
-            // Armazenar o token de autenticação no LocalStorage
-            localStorage.setItem('user_token', resposta.data.token);
+          router.push("/admin");
+      })
+          .catch((erro) => {
+              console.log(erro)
+              setIsLoading(false)
+              setIsToast(true)
+          })
 
-            // Redirecionar para a dashboard
-            router.push('/');
-        })
-        .catch((erro) => {
-            console.log(erro);
-            setIsLoading(false);
-            setIsToast(true);
-        });
-      } else {
-        refForm.current.classList.add("was-validated");
-      }
-    },
-    [router]
-  );
-
+  } else {
+      refForm.current.classList.add('was-validated')
+  }
+}, [router])
   return (
     <>
       <Loading visible={isLoading} />
@@ -62,8 +69,10 @@ export default function Login() {
       <Main>
         <Border>
           <div className="d-flex flex-column align-items-center">
-            <h1 style={{color: "#8fbd31"}}>Admin</h1>
-            <p className="text-secondary" style={{fontSize: "1.3rem"}}>Preencha os campos para logar</p>
+            <h1 style={{ color: "#8fbd31" }}>Admin</h1>
+            <p className="text-secondary" style={{ fontSize: "1.3rem" }}>
+              Preencha os campos para logar
+            </p>
           </div>
           <hr />
 
@@ -83,7 +92,9 @@ export default function Login() {
                 id="email"
                 required
               />
-              <div className="invalid-feedback">Por favor, insira seu email</div>
+              <div className="invalid-feedback">
+                Por favor, insira seu email
+              </div>
             </div>
             <div className="col-md-12 mt-1">
               <label htmlFor="senha" className="form-label">
@@ -95,13 +106,17 @@ export default function Login() {
                 id="senha"
                 required
               />
-              <div className="invalid-feedback">Por favor, insira sua senha</div>
+              <div className="invalid-feedback">
+                Por favor, insira sua senha
+              </div>
             </div>
             <div className="col-md-12 mt-3">
               <Button type="submit" id="botao">
                 Enviar
               </Button>
             </div>
+
+            
           </form>
         </Border>
       </Main>

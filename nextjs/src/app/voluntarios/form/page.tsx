@@ -1,7 +1,7 @@
 "use client";
 import { NavBar } from "@/app/components/NavBar";
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import axios from 'axios';
 import {
   FormContainer,
   FormField,
@@ -14,25 +14,62 @@ import {
 } from "./style";
 
 export default function Form() {
-  const router = useRouter();
+  const getCsrfToken = async () => {
+    await axios.get("http://localhost:8000/sanctum/csrf-cookie", { withCredentials: true });
+  };
+  
+  const [status, setStatus] = useState<string>("");
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
   const [cidade, setCidade] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [voluntariado, setVoluntariado] = useState("");
-  const [message, setMessage] = useState("");
-
+  const [formData, setFormData] = useState<any>(null); // Estado para armazenar os dados do formulário
+  const [submitted, setSubmitted] = useState(false); // Estado para indicar se o formulário foi enviado
   useEffect(() => {
-    if (message === "Dados salvos com sucesso!") {
-      router.push("/"); // Redireciona para a home ou outra página após sucesso
+    if (submitted && formData) {
+      const submitForm = async () => {
+        try {
+
+          await getCsrfToken();
+          const response = await axios.post("http://localhost:8000/form", formData, {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            withCredentials: true, // Importante para que o token CSRF seja enviado
+          });
+
+          // Exibir mensagem de sucesso
+          setStatus("Formulário enviado com sucesso!");
+
+          // Limpar os campos após envio
+          setNome("");
+          setEndereco("");
+          setCidade("");
+          setEmail("");
+          setTelefone("");
+          setVoluntariado("");
+          setFormData(null);
+        } catch (error) {
+          // Exibir mensagem de erro caso ocorra algum problema
+          setStatus("Erro ao enviar formulário");
+          console.error(error);
+        } finally {
+          setSubmitted(false); // Reseta o estado após o envio
+        }
+      };
+
+      submitForm();
     }
-  }, [message, router]);
+  }, [submitted, formData]); // O useEffect será chamado quando o estado `submitted` for alterado
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-    const formData = {
+    // Preparando os dados do formulário
+    const data = {
       nome,
       endereco,
       cidade,
@@ -41,26 +78,9 @@ export default function Form() {
       voluntariado,
     };
 
-    try {
-      const response = await fetch("http://localhost:8000/api/saveFormData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      console.log(data);  // Adicionando console.log para verificar o que a API retorna
-
-      if (response.ok) {
-        setMessage("Dados salvos com sucesso!");
-      } else {
-        setMessage("Erro ao salvar os dados.");
-      }
-    } catch (error) {
-      setMessage("Erro ao enviar os dados.");
-    }
+    // Atualizando o estado com os dados do formulário e marcando que o formulário foi enviado
+    setFormData(data);
+    setSubmitted(true);
   };
   return (
     <>
@@ -152,6 +172,7 @@ export default function Form() {
               <SubmitButton type="submit">Enviar</SubmitButton>
             </ButtonContainer>
           </form>
+          {status && <p>{status}</p>}
         </FormContainer>
       </BackgroundContainer>
     </>
