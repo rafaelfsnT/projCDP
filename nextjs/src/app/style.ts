@@ -1,74 +1,82 @@
 "use client";
 import styled from "styled-components";
+
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Coluna padrão */
   align-items: center;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-direction: row;
+  margin-top: 70px;
+  width: 100%;
+  
+  @media (min-width: 768px) {
+    flex-direction: row; /* Para telas maiores, exibe em linha */
+    justify-content: space-between;
+  }
 `;
 
-// Container para a imagem
 export const ImageContainer = styled.div`
-  margin-left: 40px;
-  display: flex;
-  justify-content: center;
-  width: 40%;
-  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    max-width: 700px;
+  }
 `;
 
-// Para a imagem em si
-export const Image = styled.img`
-  width: 400px;
-  height: 400px;
-  max-width: 400px;
-  object-fit: cover;
-`;
-
-// Container do texto (incluindo título e parágrafos)
 export const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: -30px; /* Ajuste o título para cima */
-  padding: 20px;
-  text-align: left;
-  width: 55%;
+  width: 100%;
+  text-align: center;
 
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #2c3e50; /* Cor para o título */
+    font-size: 24px;
+    margin-bottom: 16px;
   }
 
   p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #34495e; /* Cor do texto */
-    margin-bottom: 30px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) {
+    text-align: left;
+    width: 60%;
+    padding-left: 20px;
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 18px;
+    }
   }
 `;
 
-// Container para os botões
 export const ButtonsContainer = styled.div`
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 `;
 
-// Estilo do botão
-export const Button = styled.a`
-  padding: 15px 25px;
-  background-color: #27ae60;
+export const Button = styled.button`
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #4CAF50;
   color: white;
-  font-size: 1.2rem;
+  border: none;
   border-radius: 5px;
-
-  text-align: center;
+  font-size: 16px;
   cursor: pointer;
-
+  
   &:hover {
-    background-color: #2ecc71;
+    background-color: #45a049;
   }
 `;
