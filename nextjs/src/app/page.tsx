@@ -25,12 +25,13 @@ export default function Home() {
       <NavBar />
 
       <Container>
-        <ImageContainer style={{ marginTop: "70px" }}>
+      <ImageContainer>
           <Image
-            src="/background_casadapaz.jpg" // Coloque o caminho correto da imagem que você deseja usar
+            src="/background_casadapaz.jpg" // Caminho da imagem
             alt="Imagem de exemplo"
-            width={400} // Largura da imagem
-            height={400} // Altura da imagem
+            layout="responsive" // Responsivo
+            width={700} // Largura inicial
+            height={400} // Altura inicial
           />
         </ImageContainer>
 

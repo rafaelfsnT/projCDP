@@ -42,7 +42,7 @@ export default function Login() {
               JSON.stringify(resposta.data)
           )
 
-          router.push("/admin");
+          router.push("/homeA");
       })
           .catch((erro) => {
               console.log(erro)

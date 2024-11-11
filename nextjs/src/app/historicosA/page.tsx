@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
-import { NavBarA } from '../components/NavBarA';
+
 import { verificaTokenExpirado } from "../../services/token";
 
 export default function HistoricosA () {
@@ -23,7 +23,7 @@ export default function HistoricosA () {
 
     return (
         <>
-  <NavBarA />
+
     
 </>
 );
