@@ -2,32 +2,97 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Galeria;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class GaleriaController extends Controller
 {
-    public function upload(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        // Valida se o arquivo é uma imagem
+        $galerias = Galeria::all();
+        return response()->json($galerias);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+
+
         $request->validate([
-            'foto' => 'required', // aceita tipos de imagem com até 2MB
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Armazena a imagem na pasta 'public/galeria'
-        $filePath = $request->file('foto')->store('galeria', 'public');
+        // Armazenar a imagem
+        $avatarPath = $request->file('avatar')->store('avatars', 'public');
 
-        // Salva o caminho no banco de dados
-        $imagem = Galeria::create([
-            'file_path' => $filePath,
-            'nome' => 'Nome da Imagem' // ou qualquer valor que você deseja usar
+        // Criar a galeria no banco de dados
+        $galeria = Galeria::create([
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'avatar' => $avatarPath,
         ]);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarName = $avatar->getClientOriginalName();
+            $avatarPath = $avatar->storeAs('public/avatars', $avatarName);
 
-        return response()->json([
-            'message' => 'Imagem enviada com sucesso!',
-            'file_path' => $imagem->file_path
-        ], 201);
+            // Salve apenas o nome do arquivo no banco
+            $galeria->avatar = $avatarName;
+            $galeria->save();
+        }
+
+        return response()->json(['message' => 'Galeria criada com sucesso!', 'data' => $galeria], 200);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $galeria = Galeria::find($id);
+    if ($galeria) {
+        $galeria->delete();
+        return response()->json(['message' => 'Galeria deletada com sucesso.']);
+    }
+    return response()->json(['message' => 'Galeria não encontrada.'], 404);
     }
 }
-

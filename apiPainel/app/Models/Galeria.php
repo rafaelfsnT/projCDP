@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Galeria extends Model
 {
     use HasFactory;
-
-    // Especifique quais campos podem ser preenchidos em massa
-    protected $fillable = [
-        'file_path',
-    ];
+    
+    protected $fillable = ['titulo', 'descricao', 'avatar'];
 }

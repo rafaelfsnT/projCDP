@@ -28,18 +28,19 @@ export const SidebarItem = styled.li`
 `;
 
 
-export const SidebarHighlightButton = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1rem;
-  color: #fff;
-  background-color: #ff6347;
+export const SidebarHighlightButton = styled.button`
+   background-color: #8fbd31;
+  color: white;
+  border: none;
   border-radius: 5px;
-  text-decoration: none;
+  padding: 0.5rem 1rem;
   font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
 
   &:hover {
-    background-color: #ff4500;
+    background-color: #7aa72a;
+    transform: scale(1.05);
   }
-`;
+  `;
