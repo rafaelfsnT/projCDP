@@ -1,15 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  FaUser,
-  FaHome,
-  FaInfoCircle,
-  FaHistory,
-  FaHandsHelping,
-  FaImages,
-  FaPhone,
-  FaDonate,
-} from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { FaImages, FaSignOutAlt, FaAngleDown, FaAngleUp, FaPlus } from "react-icons/fa";
 import {
   Sidebar,
   SidebarLogo,
@@ -24,6 +16,23 @@ interface IProps {
 
 export const NavBarAdmin = (props: IProps) => {
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+  const [showAddButton, setShowAddButton] = useState(false);
+
+    const handleGalleryClick = () => {
+      setShowAddButton(prevState => !prevState);
+    };
+
+    const handleAddClick = () => {
+        console.log("Adicionar nova galeria");
+        router.push("/galeriaA/gerenciarA");
+    };
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("americanos.token");
+    router.push("/"); // Redireciona para a página inicial após o logout
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -36,61 +45,46 @@ export const NavBarAdmin = (props: IProps) => {
   return (
     <>
       <Sidebar className="sidebar d-flex flex-column p-3">
-        <Link href="/" className="navbar-brand mb-3">
+        <Link href="/homeA" className="navbar-brand mb-3">
           <SidebarLogo>
             <img src="/logo.png" alt="Logo" />
           </SidebarLogo>
         </Link>
 
         <SidebarMenu>
-          <SidebarItem>
-            <Link href="/" className="nav-link">
-              <FaHome className="me-2" />
-              Início
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <Link href="/sobre" className="nav-link">
-              <FaInfoCircle className="me-2" />
-              Sobre Nós
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <Link href="/historicos" className="nav-link">
-              <FaHistory className="me-2" />
-              Históricos
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <Link href="/voluntarios" className="nav-link">
-              <FaHandsHelping className="me-2" />
-              Voluntários
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <Link href="/galeria" className="nav-link">
-              <FaImages className="me-2" />
-              Galeria
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <Link href="/contato" className="nav-link">
-              <FaPhone className="me-2" />
-              Contato
-            </Link>
-          </SidebarItem>
-          <SidebarItem>
-            <SidebarHighlightButton href="/doacao" className="mt-3">
-              <FaDonate className="me-2" />
-              Doe Agora
+        <SidebarHighlightButton>
+                <Link href="/galeriaA" className="nav-link" onClick={handleGalleryClick}>
+                    <FaImages className="me-2" />
+                    Galeria
+                    {showAddButton ? <FaAngleUp className="ms-2" /> : <FaAngleDown className="ms-2" />} {/* Alterna a setinha */}
+                </Link>
             </SidebarHighlightButton>
-          </SidebarItem>
-          <SidebarItem className="mt-auto">
-            <Link href="/login" className="nav-link">
-              <FaUser className="me-2" />
-              Login
-            </Link>
-          </SidebarItem>
+
+            {/* Exibir o botão "Adicionar" condicionalmente */}
+            {showAddButton && (
+                <SidebarHighlightButton>
+                    <button className="nav-link" onClick={handleAddClick} style={{ border: 'none', background: 'none', padding: 0 }}>
+                    <FaPlus className="me-2" />  Adicionar
+                    </button>
+                </SidebarHighlightButton>
+                  )}
+       
+           
+
+          <div className="w-100"></div>
+          <div className="navbar-nav">
+            <div className="nav-item text-nowrap">
+              <a className="nav-link px-3" href="#"></a>
+
+              <button
+                className="nav-link"
+                onClick={handleLogout}
+                style={{ border: "none", background: "none", padding: 0 }}
+              >
+                <FaSignOutAlt style={{ marginRight: "5px" }} /> Sair
+              </button>
+            </div>
+          </div>
         </SidebarMenu>
       </Sidebar>
 

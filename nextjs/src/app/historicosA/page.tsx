@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import { NavBarAdmin } from "../components/NavBarAdmin";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 
@@ -23,7 +24,7 @@ export default function HistoricosA () {
 
     return (
         <>
-
+  <NavBarAdmin />
     
 </>
 );
