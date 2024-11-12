@@ -43,7 +43,7 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/galeria', formData, {
+      const response = await axios.post('http://localhost:8000/api/galerias', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -1,6 +1,6 @@
 "use client";
 import { NavBar } from "@/app/components/NavBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import {
   FormContainer,
@@ -14,9 +14,6 @@ import {
 } from "./style";
 
 export default function Form() {
-  const getCsrfToken = async () => {
-    await axios.get("http://localhost:8000/sanctum/csrf-cookie", { withCredentials: true });
-  };
   
   const [status, setStatus] = useState<string>("");
   const [nome, setNome] = useState("");
@@ -25,47 +22,9 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [voluntariado, setVoluntariado] = useState("");
-  const [formData, setFormData] = useState<any>(null); // Estado para armazenar os dados do formulário
-  const [submitted, setSubmitted] = useState(false); // Estado para indicar se o formulário foi enviado
-  useEffect(() => {
-    if (submitted && formData) {
-      const submitForm = async () => {
-        try {
 
-          await getCsrfToken();
-          const response = await axios.post("http://localhost:8000/form", formData, {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            withCredentials: true, // Importante para que o token CSRF seja enviado
-          });
-
-          // Exibir mensagem de sucesso
-          setStatus("Formulário enviado com sucesso!");
-
-          // Limpar os campos após envio
-          setNome("");
-          setEndereco("");
-          setCidade("");
-          setEmail("");
-          setTelefone("");
-          setVoluntariado("");
-          setFormData(null);
-        } catch (error) {
-          // Exibir mensagem de erro caso ocorra algum problema
-          setStatus("Erro ao enviar formulário");
-          console.error(error);
-        } finally {
-          setSubmitted(false); // Reseta o estado após o envio
-        }
-      };
-
-      submitForm();
-    }
-  }, [submitted, formData]); // O useEffect será chamado quando o estado `submitted` for alterado
-
-  const handleSubmit = (e: React.FormEvent) => {
+  // Função para enviar o formulário
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Preparando os dados do formulário
@@ -78,10 +37,34 @@ export default function Form() {
       voluntariado,
     };
 
-    // Atualizando o estado com os dados do formulário e marcando que o formulário foi enviado
-    setFormData(data);
-    setSubmitted(true);
+    console.log("Dados enviados: ", data); // Verificando os dados enviados
+
+    try {
+      // Envia os dados do formulário para o backend
+      const response = await axios.post("http://localhost:8000/api/form", data, {
+        headers: {
+          "Content-Type": "application/json"// Se necessário
+        },
+        withCredentials: true, // Se o backend requer autenticação via cookies ou CSRF
+      });
+
+      // Exibe mensagem de sucesso
+      setStatus("Formulário enviado com sucesso!");
+
+      // Limpar os campos após envio
+      setNome("");
+      setEndereco("");
+      setCidade("");
+      setEmail("");
+      setTelefone("");
+      setVoluntariado("");
+    } catch (error: any) {
+      // Exibe mensagem de erro caso ocorra algum problema
+      setStatus("Erro ao enviar formulário");
+      console.error("Erro de envio:", error.response?.data || error.message); // Mostrando erro detalhado
+    }
   };
+
   return (
     <>
       <NavBar />

@@ -1,34 +1,38 @@
 'use client';
 import { useEffect, useState } from "react";
-import { NavBarAdmin } from "../../../components/NavBarAdmin";
+import { useRouter, useParams  } from 'next/navigation';
 import axios from "axios";
-import { useRouter } from 'next/navigation';
-import {  Title, FormContainer, FormGroup, Input, Textarea, SubmitButton } from './style';
-import { verificaTokenExpirado } from "../../../../services/token";
+import { NavBarAdmin } from "../../../components/NavBarAdmin";
+import { Title, FormContainer, FormGroup, Input, Textarea, SubmitButton } from './style';
 
-export default function GerenciarGaleriaA () {
+export default function EditarGaleria() {
   const router = useRouter();
+  const { id } = useParams();
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [avatar, setAvatar] = useState<File | null>(null);
 
   useEffect(() => {
-    let lsToken = localStorage.getItem('americanos.token');
+    if (!id) return; // Verifique se o id está disponível
 
-    let token: IToken | null = null;
+    const fetchGaleria = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/galerias/${id}`);
+        const { titulo, descricao, avatar } = response.data;
+        setTitulo(titulo);
+        setDescricao(descricao);
+        // Defina o avatar se necessário, pode ser uma URL da imagem
+      } catch (error) {
+        console.error("Erro ao carregar dados da galeria", error);
+      }
+    };
 
-    if (typeof lsToken === 'string') {
-        token = JSON.parse(lsToken);
-    }
+    fetchGaleria();
+  }, [id]); // Certifique-se de executar isso sempre que o id mudar
 
-    if (!token || verificaTokenExpirado(token.accessToken)) {
-      router.push("/login");
-    }
-}, [router]);
-
-const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setAvatar(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setAvatar(e.target.files[0]); // Salva o arquivo de imagem no estado
     }
   };
 
@@ -43,29 +47,29 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/galeria', formData, {
+      const response = await axios.put(`http://localhost:8000/api/galerias/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
       if (response.status === 200) {
-        alert('Galeria adicionada com sucesso!');
+        alert('Galeria atualizada com sucesso!');
         router.push('/galeriaA');
       }
     } catch (error) {
-      console.error('Erro ao salvar galeria:', error);
-      alert('Erro ao salvar galeria.');
+      console.error('Erro ao atualizar galeria:', error);
+      alert('Erro ao atualizar galeria.');
     }
   };
 
-    return (
-        <>
-          <NavBarAdmin />
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  return (
+    <>
+      <NavBarAdmin />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <div style={{ padding: '20px', width: '100%', maxWidth: '800px' }}>
           <FormContainer>
-            <Title>Galeria Casa da Paz</Title>
+            <Title>Editar Galeria Casa da Paz</Title>
 
             <form onSubmit={handleSubmit}>
               <FormGroup>
@@ -97,16 +101,14 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                   id="avatar"
                   onChange={handleFileChange}
                   accept="image/*"
-                  required
                 />
               </FormGroup>
 
-              <SubmitButton type="submit">Salvar Galeria</SubmitButton>
+              <SubmitButton type="submit">Salvar Alterações</SubmitButton>
             </form>
           </FormContainer>
         </div>
       </div>
-
-</>
-);
+    </>
+  );
 }
