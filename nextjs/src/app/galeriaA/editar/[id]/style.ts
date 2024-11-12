@@ -74,17 +74,5 @@ export const SubmitButton = styled.button`
   }
 `;
 
-const DeleteButton = styled.button`
-  background-color: #f44336;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
 
-  &:hover {
-    background-color: #d32f2f;
-  }
-`;
 

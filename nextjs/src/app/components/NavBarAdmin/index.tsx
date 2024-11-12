@@ -79,9 +79,9 @@ export const NavBarAdmin = (props: IProps) => {
               <button
                 className="nav-link"
                 onClick={handleLogout}
-                style={{ border: "none", background: "none", padding: 0 }}
+                style={{ border: "none", background: "none", padding: 0,  color: '#8fbd31'}}
               >
-                <FaSignOutAlt style={{ marginRight: "5px" }} /> Sair
+                <FaSignOutAlt style={{ marginRight: "5px", color: '#8fbd31' }} /> Sair
               </button>
             </div>
           </div>

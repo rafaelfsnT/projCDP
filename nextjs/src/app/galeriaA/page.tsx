@@ -35,19 +35,29 @@ export default function GaleriaA() {
     fetchGalerias();
   }, []);
 
-   const handleDelete = async (id: number) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setAvatar(e.target.files[0]);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
     try {
-      const confirmation = window.confirm("Tem certeza que deseja deletar esta galeria?");
+      const confirmation = window.confirm(
+        "Tem certeza que deseja deletar esta galeria?"
+      );
       if (confirmation) {
-        const response = await axios.delete(`http://localhost:8000/api/galeria/${id}`);
+        const response = await axios.delete(
+          `http://localhost:8000/api/galerias/${id}`
+        );
         if (response.status === 200) {
-          alert('Galeria deletada com sucesso!');
-          setGalerias(galerias.filter(galeria => galeria.id !== id));
+          alert("Galeria deletada com sucesso!");
+          setGalerias(galerias.filter((galeria) => galeria.id !== id));
         }
       }
     } catch (error) {
-      console.error('Erro ao deletar galeria:', error);
-      alert('Erro ao deletar galeria.');
+      console.error("Erro ao deletar galeria:", error);
+      alert("Erro ao deletar galeria.");
     }
   };
 
@@ -70,7 +80,8 @@ export default function GaleriaA() {
                   <Image
                     src={`/storage/avatars/${galeria.avatar}`}
                     alt={galeria.titulo}
-                    className="card-img-top"
+                    width={500} // Adicionando as propriedades de width e height
+                    height={300}
                   />
 
                   {/* Título da galeria */}
