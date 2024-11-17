@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavBar } from "../components/NavBar";
 import { Title, GaleriaItem, Image, Text, Espacamento } from "./style";
+import Footer from '../components/Footer';
 
 export default function Galeria() {
   const [galerias, setGalerias] = useState<any[]>([]);
@@ -45,6 +46,9 @@ export default function Galeria() {
           <p>Carregando galerias...</p>
         )}
       </div>
+
+
+<Footer />
     </>
   );
 }
