@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link'; // Importando o Link do Next.js
 import { NavBar } from '../components/NavBar';
 import { Container, Title, Paragraph, Section, Button, Highlight, Background, CenteredButton } from './style';
-
+import Footer from '../components/Footer';
 const Sobre = () => {
   return (
     <>
@@ -85,6 +85,8 @@ const Sobre = () => {
           </Link>
         </CenteredButton>
       </Container>
+
+      <Footer />
     </>
   );
 };

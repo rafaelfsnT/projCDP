@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavBar } from '../components/NavBar';
 import { Title, Biografia, Biografia1, Text, Espacamento, Container, HistoricosBackground } from './style';
-
+import Footer from '../components/Footer';
 export default function Historicos() {
     const pessoas = [
         {
@@ -44,6 +44,8 @@ export default function Historicos() {
                     </Espacamento>
                 ))}
             </Container>
+
+            <Footer />
         </>
     );
 }

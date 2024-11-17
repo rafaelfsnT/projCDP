@@ -14,6 +14,7 @@ import {
   Button,
   Title2,
 } from "./style";
+import Footer from '../components/Footer';
 
 export default function Voluntarios() {
   return (
@@ -57,6 +58,8 @@ export default function Voluntarios() {
       <ImageContainer2>
         <Image2 src="/image2.jpg"></Image2>
       </ImageContainer2>
+
+      <Footer />
     </>
   );
 }
